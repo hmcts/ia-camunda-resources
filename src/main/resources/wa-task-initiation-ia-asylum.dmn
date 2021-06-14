@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="wa-initiation-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="wa-initiation-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
   <decision id="wa-task-initiation-ia-asylum" name="Task initiation DMN">
     <decisionTable id="DecisionTable_0jtevuc" hitPolicy="COLLECT">
       <input id="Input_1" label="Event Id" camunda:inputVariable="eventId">
@@ -22,7 +22,7 @@
       <output id="OutputClause_0f63m65" label="Group" name="group" typeRef="string" biodi:width="192" />
       <output id="OutputClause_165p3r3" label="Delay Duration" name="delayDuration" typeRef="integer" />
       <output id="OutputClause_0i6c6c2" label="Working Days Allowed" name="workingDaysAllowed" typeRef="integer" />
-      <output id="OutputClause_18cwtj9" label="Task category" name="taskCategory" typeRef="string" biodi:width="192" />
+      <output id="OutputClause_10rno4c" label="Process Categories Identifiers" name="processCategories" typeRef="string" biodi:width="300" />
       <rule id="DecisionRule_1fenvxm">
         <inputEntry id="UnaryTests_09nq8bu">
           <text>"makeAnApplication"</text>
@@ -48,7 +48,7 @@
         <outputEntry id="LiteralExpression_1td2bt7">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_19p16ln">
+        <outputEntry id="LiteralExpression_1m76a0d">
           <text></text>
         </outputEntry>
       </rule>
@@ -77,8 +77,8 @@
         <outputEntry id="LiteralExpression_02ctkt2">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0dneskv">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_1x4lczj">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_16cn5ci">
@@ -106,8 +106,8 @@
         <outputEntry id="LiteralExpression_10zmxqe">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0iaxv3f">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_1t0no71">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_046wm6a">
@@ -135,8 +135,8 @@
         <outputEntry id="LiteralExpression_16urfvv">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_08nyl92">
-          <text>"Time extension"</text>
+        <outputEntry id="LiteralExpression_0zy6a6s">
+          <text>"timeExtension"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0gm0jgu">
@@ -164,8 +164,8 @@
         <outputEntry id="LiteralExpression_057kfbi">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_01hes3u">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0s3kz5g">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0wvehb6">
@@ -193,8 +193,8 @@
         <outputEntry id="LiteralExpression_1qxex0h">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0kf58n4">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_147dk2d">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_12seemc">
@@ -222,8 +222,8 @@
         <outputEntry id="LiteralExpression_1w4a5dv">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_05ysaj9">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0bt7ho5">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0oelx3m">
@@ -251,8 +251,8 @@
         <outputEntry id="LiteralExpression_1ir1zsl">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1n68064">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_1fbcdjg">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1qug6sw">
@@ -280,8 +280,8 @@
         <outputEntry id="LiteralExpression_1hxjfjs">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0skhfgm">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0zph664">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0odg0q4">
@@ -309,8 +309,8 @@
         <outputEntry id="LiteralExpression_1umafvm">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0nitnxt">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_1oy20uf">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1tpr9e2">
@@ -338,8 +338,8 @@
         <outputEntry id="LiteralExpression_11qiura">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1km44u9">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0lum3zd">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_02svucz">
@@ -367,8 +367,8 @@
         <outputEntry id="LiteralExpression_1m82yii">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0zshdc9">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0pumcv9">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1p1dgii">
@@ -396,8 +396,8 @@
         <outputEntry id="LiteralExpression_0ct7jss">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1r5415l">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_198icli">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0rscfh8">
@@ -425,8 +425,8 @@
         <outputEntry id="LiteralExpression_0twp9o1">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_146xt5j">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_1rwj0ce">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1mdjy4l">
@@ -454,8 +454,66 @@
         <outputEntry id="LiteralExpression_0g9yuhw">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0j9pe8d">
-          <text>"Case progression"</text>
+        <outputEntry id="LiteralExpression_0jmdde0">
+          <text>"caseProgression"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1i9o6sq">
+        <inputEntry id="UnaryTests_1musj01">
+          <text>"applyForFTPAAppellant"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1smiopm">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ywfz0e">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1syzaj0">
+          <text>"allocateFtpaToJudge"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_01ckded">
+          <text>"Allocate FTPA to Judge"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0er2zgp">
+          <text>"TCW"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1hsb5kf">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0mk2103">
+          <text>5</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1iua13p">
+          <text>"caseProgression"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_03s34kj">
+        <inputEntry id="UnaryTests_0x6p0iq">
+          <text>"applyForFTPARespondent"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01jhn05">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_192o02p">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1homrsi">
+          <text>"allocateFtpaToJudge"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0ck5w1d">
+          <text>"Allocate FTPA to Judge"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ybvr5k">
+          <text>"TCW"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1xkqk32">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_13mlqbd">
+          <text>5</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_145k53n">
+          <text>"caseProgression"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0i6qihx">
@@ -483,8 +541,8 @@
         <outputEntry id="LiteralExpression_184ro7i">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0thr6gl">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_0yoh9gf">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_10q7721">
@@ -512,8 +570,8 @@
         <outputEntry id="LiteralExpression_17t1pof">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0n35lpo">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_0m9jin9">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_10eahy0">
@@ -541,8 +599,8 @@
         <outputEntry id="LiteralExpression_19cly21">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1m406i0">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_0vyvrgx">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0ass3eo">
@@ -570,8 +628,8 @@
         <outputEntry id="LiteralExpression_0kqlc9o">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1k5vp3c">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_0u38id9">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0rwbivl">
@@ -599,8 +657,8 @@
         <outputEntry id="LiteralExpression_137jbcs">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1q1xh55">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_145ayue">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_169eas5">
@@ -628,8 +686,8 @@
         <outputEntry id="LiteralExpression_0a21cw2">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0ici557">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_04ubdpr">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0f4ui9w">
@@ -657,8 +715,8 @@
         <outputEntry id="LiteralExpression_07ijv3r">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_1eqvrbb">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_183pz80">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0t01ska">
@@ -686,8 +744,8 @@
         <outputEntry id="LiteralExpression_05d86le">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_0f3953o">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_12zlwly">
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1nbkbh7">
@@ -715,8 +773,37 @@
         <outputEntry id="LiteralExpression_1d8tjl9">
           <text>2</text>
         </outputEntry>
-        <outputEntry id="LiteralExpression_00omtpc">
-          <text>"Followup overdue"</text>
+        <outputEntry id="LiteralExpression_1ydf6vl">
+          <text>"followUpOverdue"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1tjsb2a">
+        <inputEntry id="UnaryTests_0k05a1h">
+          <text>"dummyEventForMultipleCategories"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1sx1l49">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0ows98x">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_185gm0f">
+          <text>"testTaskIdForMultipleCategories"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0qmh0jb">
+          <text>"Test task to test multiple categories"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_015twui">
+          <text>"TCW"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0b45bki">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1u7mshj">
+          <text>2</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_031dftw">
+          <text>"caseProgression, followUpOverdue"</text>
         </outputEntry>
       </rule>
     </decisionTable>

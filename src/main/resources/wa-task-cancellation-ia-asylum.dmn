@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="wa-cancellation-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" id="wa-cancellation-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
   <decision id="wa-task-cancellation-ia-asylum" name="Task cancellation DMN">
     <decisionTable id="DecisionTable_0z3jx1g" hitPolicy="COLLECT">
       <input id="Input_1" label="From State">
@@ -20,7 +20,7 @@
       <output id="OutputClause_18zgoaj" label="Action" name="action" typeRef="string" />
       <output id="OutputClause_0tu8bqp" label="Warning Code" name="warningCode" typeRef="string" />
       <output id="OutputClause_1kfc3jv" label="Warning Text" name="warningText" typeRef="string" />
-      <output id="OutputClause_0dqzted" label="Task Categories" name="TaskCategories" typeRef="string" biodi:width="192" />
+      <output id="OutputClause_0dqzted" label="Process Categories Identifiers" name="processCategories" typeRef="string" biodi:width="277" />
       <rule id="DecisionRule_0w82l1w">
         <inputEntry id="UnaryTests_1nfllzy">
           <text></text>
@@ -64,7 +64,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_15mt0ck">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0xhe2ed">
@@ -87,7 +87,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1fhqwus">
-          <text>"Time extension"</text>
+          <text>"timeExtension"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0v6o280">
@@ -110,7 +110,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1jsnh0n">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0t1xbh5">
@@ -133,7 +133,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0mjvutv">
-          <text>"Time extension"</text>
+          <text>"timeExtension"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1eqg9rj">
@@ -156,7 +156,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0e9p769">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0hp5vha">
@@ -179,7 +179,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_17relsw">
-          <text>"Time extension"</text>
+          <text>"timeExtension"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0scl4xr">
@@ -202,7 +202,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_12nxxhe">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1m50f0j">
@@ -225,7 +225,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0k32648">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1vxg4dz">
@@ -248,7 +248,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_1x6xtks">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0kjcieg">
@@ -271,7 +271,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_0d9whzb">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_0599dvt">
@@ -294,7 +294,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_161b5g7">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1on215e">
@@ -317,7 +317,7 @@
           <text></text>
         </outputEntry>
         <outputEntry id="LiteralExpression_05kjt3x">
-          <text>"Followup overdue"</text>
+          <text>"followUpOverdue"</text>
         </outputEntry>
       </rule>
       <rule id="DecisionRule_1f4jb32">
@@ -341,6 +341,52 @@
         </outputEntry>
         <outputEntry id="LiteralExpression_1cbtlhv">
           <text></text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0sopj8a">
+        <inputEntry id="UnaryTests_06m4nz6">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1r6ibjl">
+          <text>"dummyEventForMultipleCategoriesCancel"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0d9do2z">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pu32ux">
+          <text>"Cancel"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_17wev74">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1i6k9r2">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0z5pd7l">
+          <text>"followUpOverdue, caseProgression"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1yumlrd">
+        <inputEntry id="UnaryTests_0jf0s0e">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0dps9wd">
+          <text>"dummyEventForMultipleCategoriesWarn"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0vui1td">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0msaiw4">
+          <text>"Warn"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1vt94fk">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_01pglx0">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_08epid6">
+          <text>"followUpOverdue, caseProgression"</text>
         </outputEntry>
       </rule>
     </decisionTable>
