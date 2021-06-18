@@ -472,6 +472,34 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
                 )
             ),
             Arguments.of(
+                "uploadAdditionalEvidenceHomeOffice",
+                null,
+                null,
+                singletonList(
+                    Map.of(
+                        "taskId", "reviewAdditionalHomeOfficeEvidence",
+                        "name", "Review additional Home Office evidence",
+                        "group", "TCW",
+                        "workingDaysAllowed", 2,
+                        "taskCategory", "Case progression"
+                    )
+                )
+            ),
+            Arguments.of(
+                "uploadAdditionalEvidence",
+                null,
+                null,
+                singletonList(
+                    Map.of(
+                        "taskId", "reviewAdditionalAppellantEvidence",
+                        "name", "Review additional appellant evidence",
+                        "group", "TCW",
+                        "workingDaysAllowed", 2,
+                        "taskCategory", "Case progression"
+                    )
+                )
+            ),
+            Arguments.of(
                 "unknownEvent",
                 null,
                 null,
@@ -482,10 +510,10 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
 
     @ParameterizedTest(name = "event id: {0} post event state: {1} appeal type: {2}")
     @MethodSource("scenarioProvider")
-    void given_multiple_event_ids_should_evaluate_dmn(String eventId,
-                                                      String postEventState,
-                                                      String appealType,
-                                                      List<Map<String, String>> expectation) {
+    void given_event_ids_should_evaluate_dmn(String eventId,
+                                             String postEventState,
+                                             String appealType,
+                                             List<Map<String, String>> expectation) {
 
         VariableMap inputVariables = new VariableMapImpl();
         inputVariables.putValue("eventId", eventId);
