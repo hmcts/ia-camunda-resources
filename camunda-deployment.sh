@@ -11,7 +11,7 @@ SERVICE_TOKEN=$1
 PRODUCT="ia"
 TENANT_ID="ia"
 
-for file in $BASEDIR/src/main/resources/*.bpmn $BASEDIR/src/main/resources/*.dmn; do
+for file in $BASEDIR/src/main/resources/nonprod/*.bpmn $BASEDIR/src/main/resources/nonprod/*.dmn; do
   if [ -f "$file" ]; then
     curl --silent --show-error ${CAMUNDA_URL}/deployment/create \
       -H 'Content-Type: multipart/form-data' \
