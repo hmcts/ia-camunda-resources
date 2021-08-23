@@ -251,7 +251,7 @@ dependencies {
   compileOnly 'org.projectlombok:lombok:1.18.20'
 
   testCompile group: 'org.pitest', name: 'pitest', version: versions.pitest
-  testCompile 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.5.2'
+  testCompile 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.6.0'
 
   testCompile "org.junit.vintage:junit-vintage-engine:${versions.junit}"
   testCompile group: 'org.codehaus.sonar-plugins', name: 'sonar-pitest-plugin', version: versions.sonarPitest
