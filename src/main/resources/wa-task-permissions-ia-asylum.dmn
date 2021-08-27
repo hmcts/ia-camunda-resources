@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="wa-permissions-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.2.0">
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="wa-permissions-definition" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.8.1">
   <decision id="wa-task-permissions-ia-asylum" name="Permissions DMN">
     <decisionTable id="DecisionTable_1pr5oic" hitPolicy="RULE ORDER">
-      <input id="Input_1" label="case" camunda:inputVariable="case">
+      <input id="InputClause_12crj6e" label="Task Type" camunda:inputVariable="taskType">
+        <inputExpression id="LiteralExpression_11cu08d" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="Input_1" label="Case Data" camunda:inputVariable="case">
         <inputExpression id="InputExpression_1" typeRef="string">
           <text></text>
         </inputExpression>
       </input>
-      <output id="Output_1" label="name" name="name" typeRef="string" />
-      <output id="OutputClause_1mzxe7i" label="value" name="value" typeRef="string" biodi:width="297" />
+      <output id="Output_1" label="Name" name="name" typeRef="string" />
+      <output id="OutputClause_1mzxe7i" label="Value" name="value" typeRef="string" biodi:width="297" />
+      <output id="OutputClause_16bocer" label="Authorisations" name="authorisations" typeRef="string" />
+      <output id="OutputClause_1n914lw" label="Assignment Priority" name="assignmentPriority" typeRef="integer" />
+      <output id="OutputClause_04cbxc1" label="Auto Assignable" name="autoAssignable" typeRef="boolean" />
       <rule id="DecisionRule_1tvtlre">
         <description>Tribunal caseworker task permissions</description>
+        <inputEntry id="UnaryTests_13ukkz6">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_10s330p">
           <text></text>
         </inputEntry>
@@ -20,9 +31,21 @@
         <outputEntry id="LiteralExpression_151ry1h">
           <text>"Read,Refer,Own,Manage,Cancel"</text>
         </outputEntry>
+        <outputEntry id="LiteralExpression_0niqcsd">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1ynp9nn">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1c5me4u">
+          <text></text>
+        </outputEntry>
       </rule>
       <rule id="DecisionRule_0vjgddh">
         <description>Senior tribunal caseworker task permissions</description>
+        <inputEntry id="UnaryTests_1ltuu3g">
+          <text></text>
+        </inputEntry>
         <inputEntry id="UnaryTests_0qkny80">
           <text></text>
         </inputEntry>
@@ -31,6 +54,15 @@
         </outputEntry>
         <outputEntry id="LiteralExpression_0z3dkq8">
           <text>"Read,Refer,Own,Manage,Cancel"</text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_0yfmjpv">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_1dt4hlx">
+          <text></text>
+        </outputEntry>
+        <outputEntry id="LiteralExpression_00ek24e">
+          <text></text>
         </outputEntry>
       </rule>
     </decisionTable>

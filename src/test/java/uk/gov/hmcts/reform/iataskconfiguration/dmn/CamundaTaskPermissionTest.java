@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.iataskconfiguration.dmn;
 
 import org.camunda.bpm.dmn.engine.DmnDecisionTableResult;
 import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableImpl;
+import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableInputImpl;
+import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableOutputImpl;
 import org.camunda.bpm.engine.variable.VariableMap;
 import org.camunda.bpm.engine.variable.impl.VariableMapImpl;
 import org.hamcrest.MatcherAssert;
@@ -14,6 +16,7 @@ import uk.gov.hmcts.reform.iataskconfiguration.DmnDecisionTableBaseUnitTest;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
@@ -32,7 +35,8 @@ class CamundaTaskPermissionTest extends DmnDecisionTableBaseUnitTest {
 
         return Stream.of(
             Arguments.of(
-                "anything",
+                "someTaskType",
+                "someCaseData",
                 asList(
                     Map.of(
                         "name", "tribunal-caseworker",
@@ -45,6 +49,21 @@ class CamundaTaskPermissionTest extends DmnDecisionTableBaseUnitTest {
                 )
             ),
             Arguments.of(
+                "null",
+                "someCaseData",
+                asList(
+                    Map.of(
+                        "name", "tribunal-caseworker",
+                        "value", "Read,Refer,Own,Manage,Cancel"
+                    ),
+                    Map.of(
+                        "name", "senior-tribunal-caseworker",
+                        "value", "Read,Refer,Own,Manage,Cancel"
+                    )
+                )
+            ),
+            Arguments.of(
+                "someTaskType",
                 "null",
                 asList(
                     Map.of(
@@ -60,12 +79,14 @@ class CamundaTaskPermissionTest extends DmnDecisionTableBaseUnitTest {
         );
     }
 
-    @ParameterizedTest(name = "case data: {0}")
+    @ParameterizedTest(name = "task type: {0} case data: {1}")
     @MethodSource("scenarioProvider")
-    void given_multiple_event_ids_should_evaluate_dmn(String caseData,
+    void given_multiple_event_ids_should_evaluate_dmn(String taskType,
+                                                      String caseData,
                                                       List<Map<String, String>> expectation) {
 
         VariableMap inputVariables = new VariableMapImpl();
+        inputVariables.putValue("taskType", taskType);
         inputVariables.putValue("case", caseData);
 
         DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
@@ -77,7 +98,35 @@ class CamundaTaskPermissionTest extends DmnDecisionTableBaseUnitTest {
 
         //The purpose of this test is to prevent adding new rows without being tested
         DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
+
+
+
+        List<String> inputColumnIds = asList("taskType", "case");
+        //Inputs
+        assertThat(logic.getInputs().size(), is(2));
+        assertThatInputContainInOrder(inputColumnIds, logic.getInputs());
+        //Outputs
+        List<String> outputColumnIds = asList(
+            "name",
+            "value",
+            "authorisations",
+            "assignmentPriority",
+            "autoAssignable"
+        );
+        assertThat(logic.getOutputs().size(), is(5));
+        assertThatOutputContainInOrder(outputColumnIds, logic.getOutputs());
+        //Rules
         assertThat(logic.getRules().size(), is(2));
 
+    }
+
+    private void assertThatInputContainInOrder(List<String> inputColumnIds, List<DmnDecisionTableInputImpl> inputs) {
+        IntStream.range(0, inputs.size())
+            .forEach(i -> assertThat(inputs.get(i).getInputVariable(), is(inputColumnIds.get(i))));
+    }
+
+    private void assertThatOutputContainInOrder(List<String> outputColumnIds, List<DmnDecisionTableOutputImpl> output) {
+        IntStream.range(0, output.size())
+            .forEach(i -> assertThat(output.get(i).getOutputName(), is(outputColumnIds.get(i))));
     }
 }
