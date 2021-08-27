@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.iataskconfiguration.dmn;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.camunda.bpm.dmn.engine.DmnDecisionTableResult;
 import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableImpl;
 import org.camunda.bpm.engine.variable.VariableMap;
@@ -11,6 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import uk.gov.hmcts.reform.iataskconfiguration.DmnDecisionTableBaseUnitTest;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -48,7 +52,7 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "submitAppeal",
                 "appealSubmitted",
-                "refusalOfHumanRights",
+                mapAppealType("refusalOfHumanRights"),
                 asList(
                     Map.of(
                         "taskId", "checkFeeStatus",
@@ -70,7 +74,7 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "submitAppeal",
                 "appealSubmitted",
-                "refusalOfEu",
+                mapAppealType("refusalOfEu"),
                 asList(
                     Map.of(
                         "taskId", "checkFeeStatus",
@@ -92,7 +96,7 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
             Arguments.of(
                 "submitAppeal",
                 "appealSubmitted",
-                "protection",
+                mapAppealType("protection"),
                 asList(
                     Map.of(
                         "taskId", "checkFeeStatus",
@@ -470,13 +474,13 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
     @MethodSource("scenarioProvider")
     void given_multiple_event_ids_should_evaluate_dmn(String eventId,
                                                       String postEventState,
-                                                      String appealType,
+                                                      Map<String, Object> map,
                                                       List<Map<String, String>> expectation) {
 
         VariableMap inputVariables = new VariableMapImpl();
         inputVariables.putValue("eventId", eventId);
         inputVariables.putValue("postEventState", postEventState);
-        inputVariables.putValue("appealType", appealType);
+        inputVariables.putValue("caseData", map);
 
         DmnDecisionTableResult dmnDecisionTableResult = evaluateDmnTable(inputVariables);
 
@@ -490,5 +494,21 @@ class CamundaTaskInitiationTest extends DmnDecisionTableBaseUnitTest {
         DmnDecisionTableImpl logic = (DmnDecisionTableImpl) decision.getDecisionLogic();
         assertThat(logic.getRules().size(), is(24));
 
+    }
+
+    private static Map<String, Object> mapAppealType(String appealType) {
+        String appealTypeJson = "{\n"
+               + "   \"Data\":{\n"
+               + "      \"appealType\":\"" + appealType + "\"\n"
+               + "   }"
+               + "}";
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            TypeReference<HashMap<String, Object>> typeRef = new TypeReference<>() {};
+            return mapper.readValue(appealTypeJson, typeRef);
+        } catch (IOException exp) {
+            return null;
+        }
     }
 }
